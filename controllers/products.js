@@ -1,6 +1,7 @@
 'use strict';
 
 const Product = require('../models/product');
+const uniqid = require('uniqid'); 
 
 exports.getIndex = (req, res) => {
   try {
@@ -14,14 +15,13 @@ exports.getIndex = (req, res) => {
 exports.addProduct = async (req, res) => {
   try {
     console.log(`start addProduct req.body: ${JSON.stringify(req.body)}`);
-    const { id, title, price, description, imageUrl } = req.body;
-
-    const newProduct = new Product(id, title, price, description, imageUrl);
-
-    const product = await newProduct.save();
-  
+    const { title, price, description, imageUrl } = req.body,
+    id = uniqid(),
+    newProduct = new Product(id, title, price, description, imageUrl);
+    await newProduct.save();  
+    
     console.log(`end addProduct`);
-    res.status(200).json({ product });
+    res.status(200).json({ product: newProduct });
   } catch (err) {
     res.status(500).send('Server Error');
     console.log(err);

@@ -19,7 +19,8 @@
     "body-parser": "1.20.0",
     "dotenv": "^16.0.0",
     "express": "4.17.3",
-    "mysql2": "2.3.3"
+    "mysql2": "2.3.3",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "nodemon": "2.0.15"
