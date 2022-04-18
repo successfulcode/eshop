@@ -21,11 +21,15 @@ exports.addProduct = (req, res) => {
   }
 }
 
-exports.getProducts = (req, res) => {
+exports.getProducts = async (req, res) => {
   try {
     console.log('getProducts controller');
 
-    return Product.fetchAll();
+    const products = await Product.fetchAll();
+
+    res.json({ products: products[0] })
+
+    console.log('products', JSON.stringify(products));
   } catch (err) {
     console.log(err);
   }
