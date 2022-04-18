@@ -17,8 +17,9 @@ exports.addProduct = async (req, res) => {
     console.log(`start addProduct req.body: ${JSON.stringify(req.body)}`);
     const { title, price, description, imageUrl } = req.body,
     id = uniqid(),
-    newProduct = new Product(id, title, price, description, imageUrl),
-    product = await newProduct.save();  
+    newProduct = new Product(id, title, price, description, imageUrl);
+    await newProduct.save();  
+    
     console.log(`end addProduct`);
     res.status(200).json({ product: newProduct });
   } catch (err) {
