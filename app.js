@@ -5,6 +5,8 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT;
 
+app.use(express.json({ extended: false }));
+
 const productsRouter = require('./routes/products');
 const error = require('./controllers/404');
 
